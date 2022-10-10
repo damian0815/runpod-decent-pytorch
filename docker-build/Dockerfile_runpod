@@ -24,8 +24,8 @@ RUN         apt update && apt upgrade -y \
             less \
             curl \ 
             wget \
-            && git clone $GITHUB_STABLE_DIFFUSION \
-            && cd InvokeAI \
+            && git clone $GITHUB_STABLE_DIFFUSION stable-diffusion \
+            && cd stable-diffusion \
             && git checkout $BRANCH
 
 # Install miniconda
