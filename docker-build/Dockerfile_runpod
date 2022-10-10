@@ -1,4 +1,5 @@
 FROM        nvidia/cuda:11.3.1-base-ubuntu20.04 
+#FROM        debian
 
 ARG         gsd
 ENV         GITHUB_STABLE_DIFFUSION $gsd
@@ -7,6 +8,8 @@ ARG         branch
 ENV         BRANCH $branch
 
 ENV         PIP_EXISTS_ACTION="w"
+
+ENV         DEBIAN_FRONTEND=noninteractive
 
 # TODO: Optimize image size
 
