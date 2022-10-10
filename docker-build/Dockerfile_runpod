@@ -22,6 +22,8 @@ RUN         apt update && apt upgrade -y \
             python3 \
             vim \
             less \
+            curl \ 
+            wget \
             && git clone $GITHUB_STABLE_DIFFUSION \
             && cd InvokeAI \
             && git checkout $BRANCH
