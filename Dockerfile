@@ -10,13 +10,14 @@ RUN apt-get update --yes && \
     #   the ubuntu base image is rebuilt too seldom sometimes (less than once a month)
     apt-get upgrade --yes && \
     apt install --yes --no-install-recommends\
-    build-essentials\
+    build-essential\
     git\
     wget\
     curl\
     git\
     bash\
     vim\
+    less\
     openssh-server &&\
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
