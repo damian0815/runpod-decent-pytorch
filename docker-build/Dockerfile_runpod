@@ -27,6 +27,7 @@ RUN         apt update && apt upgrade -y \
             less \
             curl \ 
             wget \
+            openssh-server &&\
             && git clone $GITHUB_STABLE_DIFFUSION stable-diffusion \
             && cd stable-diffusion \
             && git checkout $BRANCH

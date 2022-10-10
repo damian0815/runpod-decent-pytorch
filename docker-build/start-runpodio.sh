@@ -16,11 +16,5 @@ else
     echo "no \$PUBLIC_KEY set, not running ssh server"
 fi
 
-if [[ $JUPYTER_PASSWORD ]]
-then
-    cd /
-    jupyter lab --allow-root --no-browser --port=8888 --ip=* --ServerApp.terminado_settings='{"shell_command":["/bin/bash"]}' --ServerApp.token=$JUPYTER_PASSWORD --ServerApp.allow_origin=* --ServerApp.preferred_dir=/workspace
-else
-    echo "no \$JUPYTER_PASSWORD set, sleeping forever instead"
-    sleep infinity
-fi
+echo "sleeping forever"
+sleep infinity
