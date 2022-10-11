@@ -43,7 +43,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 # SD 
 WORKDIR     /stable-diffusion 
 RUN         source ~/.bashrc \
-            && conda env create -f environment.yml 
+            && conda env create -f environment.yml \
             && conda clean -afy
 
 # cleanup APT
