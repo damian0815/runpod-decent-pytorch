@@ -44,15 +44,18 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 WORKDIR     /stable-diffusion 
 RUN         source ~/.bashrc \
             && conda env create -f environment.yml 
+            && conda clean -afy
 
-# Make RUN commands use the new environment:
-RUN echo "conda activate myenv" >> ~/.bashrc
-SHELL ["/bin/bash", "--login", "-c"]
+# cleanup APT
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
+# symlink model
 WORKDIR     /stable-diffusion 
             RUN mkdir models/ldm/stable-diffusion-v1 \
             && ln -s "/workspace/sd-v1-4.ckpt" models/ldm/stable-diffusion-v1/model.ckpt
 
+# default script starts an SSH server then sleeps
 WORKDIR     /
 COPY        start-runpodio.sh .
 ENTRYPOINT ["/start-runpodio.sh"]
