@@ -19,12 +19,14 @@ WORKDIR     /
 RUN         apt update && apt upgrade -y \
             && apt install -y \
             git \
+            git-lfs \
             libgl1-mesa-glx \
             libglib2.0-0 \
             pip \
             python3 \
             vim \
             less \
+            bc \
             curl \ 
             wget \
             openssh-server \
@@ -39,6 +41,9 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 # Put conda in path so we can use conda activate
 ENV PATH=$CONDA_DIR/bin:$PATH
+
+# conda init so that the source ~/.bashrc in the next RUN does the right thing
+RUN         conda init bash
 
 # SD 
 WORKDIR     /stable-diffusion 

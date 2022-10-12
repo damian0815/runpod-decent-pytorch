@@ -1,5 +1,0 @@
-FROM ghcr.io/damian0815/invoke-ai-runpod-development:latest
-
-WORKDIR     /
-COPY        start-runpodio.sh .
-ENTRYPOINT ["/start-runpodio.sh"]

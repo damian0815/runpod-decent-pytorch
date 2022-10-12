@@ -11,7 +11,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build the InvokeAI damian0815/development Docker image
+      - name: Build the InvokeAI damian0815 main branch Docker image
         run: |
-              docker build --build-arg gsd=https://github.com/damian0815/InvokeAI.git --build-arg branch=development --tag ghcr.io/damian0815/invoke-ai-runpod-development:latest -f docker-build/Dockerfile_runpod docker-build
-              docker push ghcr.io/damian0815/invoke-ai-runpod-development:latest
+              docker build --build-arg gsd=https://github.com/damian0815/InvokeAI.git --build-arg branch=main --tag ghcr.io/damian0815/invoke-ai-runpod:latest -f docker-build/Dockerfile_runpod docker-build
+              docker push ghcr.io/damian0815/invoke-ai-runpod:latest
