@@ -1,0 +1,21 @@
+FROM        ghcr.io/damian0815/invoke-ai-runpod:latest
+#FROM        debian
+
+# preload models and install jurigged
+WORKDIR     /stable-diffusion 
+RUN         source ~/.bashrc \
+            && conda activate ldm \
+            && pip install jurigged \ 
+            && pip cache purge \
+            && python scripts/preload_models.yaml 
+
+# install mega-cmd
+WORKDIR     /tmp
+RUN         wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb \
+            && apt install -y ./megacmd-xUbuntu_20.04_amd64.deb
+
+# cleanup APT
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
