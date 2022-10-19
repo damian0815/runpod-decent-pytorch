@@ -6,7 +6,8 @@ RUN         conda init bash
 
 # preload models and install jurigged
 WORKDIR     /stable-diffusion 
-RUN         source ~/.bashrc \
+RUN         conda init bash \
+            && source ~/.bashrc \
             && conda activate ldm \
             && pip install jurigged \ 
             && pip cache purge \
