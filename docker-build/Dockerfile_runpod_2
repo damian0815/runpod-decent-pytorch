@@ -2,6 +2,7 @@ FROM        ghcr.io/damian0815/invoke-ai-runpod:latest
 
 # make conda work?
 SHELL       ["/bin/bash", "-c"]
+RUN         conda init bash
 
 # preload models and install jurigged
 WORKDIR     /stable-diffusion 
