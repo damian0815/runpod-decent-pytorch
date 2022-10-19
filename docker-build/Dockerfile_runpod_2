@@ -1,8 +1,7 @@
 FROM        ghcr.io/damian0815/invoke-ai-runpod:latest
-#FROM        debian
 
-# conda init so that the source ~/.bashrc in the next RUN does the right thing
-RUN         conda init bash
+# make conda work?
+SHELL       ["/bin/bash", "-c"]
 
 # preload models and install jurigged
 WORKDIR     /stable-diffusion 

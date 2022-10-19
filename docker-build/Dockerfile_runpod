@@ -13,6 +13,7 @@ ENV         DEBIAN_FRONTEND=noninteractive
 
 # TODO: Optimize image size
 
+# make conda work?
 SHELL       ["/bin/bash", "-c"]
 
 WORKDIR     /
