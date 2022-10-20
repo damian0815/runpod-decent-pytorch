@@ -1,14 +1,11 @@
 FROM        ghcr.io/damian0815/invoke-ai-runpod:latest
 
 # make conda work?
-SHELL       ["/bin/bash", "-c"]
-RUN         conda init bash
+SHELL       ["conda", "run", "--no-capture-output", "-n", "ldm", "/bin/bash", "-c"]
 
 # preload models and install jurigged
 WORKDIR     /stable-diffusion 
-RUN         conda init bash \
-            && source ~/.bashrc \
-            && conda activate ldm \
+RUN         conda activate ldm \
             && pip install jurigged \ 
             && pip cache purge \
             && python scripts/preload_models.yaml 
