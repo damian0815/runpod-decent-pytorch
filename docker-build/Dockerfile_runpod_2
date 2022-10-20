@@ -14,7 +14,7 @@ RUN         source /opt/conda/etc/profile.d/conda.sh \
 # install mega-cmd
 WORKDIR     /tmp
 RUN         wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb \
-            && apt install -y ./megacmd-xUbuntu_20.04_amd64.deb
+            && apt update && apt install -y ./megacmd-xUbuntu_20.04_amd64.deb
 
 # cleanup APT
 RUN apt-get clean && \
