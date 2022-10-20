@@ -9,7 +9,7 @@ RUN         source /opt/conda/etc/profile.d/conda.sh \
             && conda activate ldm \
             && pip install jurigged \ 
             && pip cache purge \
-            && python scripts/preload_models.yaml 
+            && python scripts/preload_models.py 
 
 # install mega-cmd
 WORKDIR     /tmp
