@@ -6,7 +6,7 @@ SHELL       ["/bin/bash", "-c"]
 # preload models and install jurigged
 WORKDIR     /stable-diffusion 
 RUN         source /opt/conda/etc/profile.d/conda.sh \
-            && conda activate ldm \
+            && conda activate invokeai \
             && pip install jurigged \ 
             && pip cache purge \
             && python scripts/preload_models.py 
