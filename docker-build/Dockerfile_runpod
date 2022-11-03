@@ -46,20 +46,21 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 # conda init so that the source ~/.bashrc in the next RUN does the right thing
 RUN         conda init bash
 
-# SD 
+# SD, preload models, mega-cmd, jurigged, cleanup APT
 WORKDIR     /stable-diffusion 
 RUN         source ~/.bashrc \
             && conda env create -f environment.yml \
+            && conda activate invokeai \
+            && pip install jurigged \ 
+            && pip cache purge \
             && conda clean -afy
-
-# cleanup APT
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# symlink model
-WORKDIR     /stable-diffusion 
-            RUN mkdir models/ldm/stable-diffusion-v1 \
-            && ln -s "/workspace/sd-v1-4.ckpt" models/ldm/stable-diffusion-v1/model.ckpt
+            && python scripts/preload_models.py --no-interactive \
+            && wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb \
+            && apt update \
+            && apt install -y ./megacmd-xUbuntu_20.04_amd64.deb \
+            && rm megacmd-xUbuntu_20.04_amd64.deb \
+            && apt-get clean \
+            && rm -rf /var/lib/apt/lists/*
 
 # default script starts an SSH server then sleeps
 WORKDIR     /
