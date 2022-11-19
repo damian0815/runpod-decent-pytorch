@@ -50,6 +50,9 @@ RUN         conda init bash
 WORKDIR     /stable-diffusion 
 RUN         source ~/.bashrc \
             && conda install -c conda-forge mamba \
+            && source /opt/conda/etc/profile.d/conda.sh \
+            && conda activate base \
+            && conda activate invokeai \
             && ln -s environments-and-requirements/environment-lin-cuda.yml environment.yml \
             && mamba env create -f environment.yml \
             && conda activate invokeai \
