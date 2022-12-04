@@ -54,7 +54,7 @@ RUN         source ~/.bashrc \
             && pip install jurigged \ 
             && pip cache purge \
             && conda clean -afy \
-            && python scripts/preload_models.py --no-interactive \
+            && python scripts/configure_invokeai.py --yes --no-interactive \
             && wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb \
             && apt update \
             && apt install -y ./megacmd-xUbuntu_20.04_amd64.deb \
