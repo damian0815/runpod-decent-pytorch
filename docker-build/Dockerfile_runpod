@@ -49,7 +49,11 @@ RUN         conda init bash
 # SD, preload models, mega-cmd, jurigged, cleanup APT
 WORKDIR     /stable-diffusion 
 RUN         source ~/.bashrc \
-            && conda env create -f environment.yml \
+            && conda install -c conda-forge mamba \
+            && source /opt/conda/etc/profile.d/conda.sh \
+            && conda activate base \
+            && ln -s environments-and-requirements/environment-lin-cuda.yml environment.yml \
+            && mamba env create -f environment.yml \
             && conda activate invokeai \
             && pip install jurigged \ 
             && pip cache purge \
