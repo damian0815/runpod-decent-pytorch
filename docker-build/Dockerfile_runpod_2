@@ -1,22 +1,24 @@
-FROM        ghcr.io/damian0815/invoke-ai-runpod:latest
+FROM        ghcr.io/damian0815/invokeai:main-x86_64
 
 # make conda work?
 SHELL       ["/bin/bash", "-c"]
 
 # install jurigged and preload models
-WORKDIR     /stable-diffusion 
+WORKDIR     /invokeai
 RUN         source /opt/conda/etc/profile.d/conda.sh \
             && conda activate invokeai \
             && pip install jurigged \ 
-            && pip cache purge \
-            && python scripts/preload_models.py --no-interactive
+            && pip cache purge 
+            #\
+#            && python scripts/preload_models.py --skip-sd-weights --yes --root /invokeai
 
-# install mega-cmd and then cleanup APT
+# install less, wget, vim, mega-cmd and then cleanup APT
 WORKDIR     /tmp
-RUN         wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb \
-            && apt update \
-            && apt install -y ./megacmd-xUbuntu_20.04_amd64.deb \
+RUN         apt update && apt install -y tmux less vim wget \
+            && wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_22.04_amd64.deb \
+            && apt install -y ./megacmd-xUbuntu_22.04_amd64.deb \
             && apt-get clean \
-            && rm -rf /var/lib/apt/lists/*
+            && rm -rf /var/lib/apt/lists/* \
+            && rm ./megacmd-xUbuntu_22.04_amd64.deb
 
 
