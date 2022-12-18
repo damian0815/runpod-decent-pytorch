@@ -5,9 +5,7 @@ SHELL       ["/bin/bash", "-c"]
 
 # install jurigged and preload models
 WORKDIR     /invokeai
-RUN         source /opt/conda/etc/profile.d/conda.sh \
-            && conda activate invokeai \
-            && pip install jurigged \ 
+RUN         pip install jurigged \ 
             && pip cache purge 
             #\
 #            && python scripts/preload_models.py --skip-sd-weights --yes --root /invokeai
